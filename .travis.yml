@@ -15,4 +15,4 @@ deploy:
   username: "yahyatamim"
   password: "pypi-AgEIcHlwaS5vcmcCJDEzZjM5YzllLWZmOGEtNGZmMS05NzgxLTZiZTI2NjI2YzhkYwACNnsicGVybWlzc2lvbnMiOiB7InByb2plY3RzIjogWyJweWlkdyJdfSwgInZlcnNpb24iOiAxfQAABiDq_JtZXXUqkaFD8BGPLPahbHU4lyHy09vBfs_s30diug"
   on:
-    branch: master
+    branch: main
