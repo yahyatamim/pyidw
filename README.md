@@ -1,0 +1,1 @@
+This python package is intended to be a standalone python tool for idw interpolation
