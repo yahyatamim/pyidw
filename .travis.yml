@@ -1,0 +1,18 @@
+language: python
+python:
+  - 3.6
+
+# Update pip to the latest version
+before_install:
+  - python --version
+  - pip install -U pip
+
+install:
+  - pip install -r requirements.txt
+
+deploy:
+  provider: pypi
+  username: "yahyatamim"
+  password: "pypi-AgEIcHlwaS5vcmcCJDEzZjM5YzllLWZmOGEtNGZmMS05NzgxLTZiZTI2NjI2YzhkYwACNnsicGVybWlzc2lvbnMiOiB7InByb2plY3RzIjogWyJweWlkdyJdfSwgInZlcnNpb24iOiAxfQAABiDq_JtZXXUqkaFD8BGPLPahbHU4lyHy09vBfs_s30diug"
+  on:
+    branch: master
