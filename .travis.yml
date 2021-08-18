@@ -10,6 +10,9 @@ before_install:
 install:
   - pip install -r requirements.txt
 
+script:
+  - python -m unittest tests/multiplication_tests.py
+
 deploy:
   provider: pypi
   username: "__token__"
