@@ -28,3 +28,5 @@ Inverse distance weighted interpolation is one of the simplest geospatial interp
 ---
 
 > For example and tutorial, please visit [pyidw.readthedocs.io](https://pyidw.readthedocs.io/en/latest/)
+
+---
