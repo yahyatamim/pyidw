@@ -1,8 +1,7 @@
 class Multiplication:
     """
     Instantiate a multiplication operation.
-    Numbers will be multiplied by the given multiplier.
-    Md.Yahya Tamim
+    Numbers will be multiplied by the given multiplier. Md.Yahya Tamim.
     
     :param multiplier: The multiplier.
     :type multiplier: int
