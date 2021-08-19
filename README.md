@@ -1,4 +1,5 @@
-# pyidw - All in one IDW package for python
+# pyidw
+## All in one IDW package for python
 
 ![idw interpolated map using pyidw](https://user-images.githubusercontent.com/69247506/130098328-fe8f04ba-f815-4d29-85d8-cf015e13aaaa.png)
 
@@ -29,4 +30,4 @@ Inverse distance weighted interpolation is one of the simplest geospatial interp
 
 > For example and tutorial, please visit [**pyidw.readthedocs.io**](https://pyidw.readthedocs.io/en/latest/)
 
----
+
