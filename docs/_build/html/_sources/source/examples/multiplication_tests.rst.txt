@@ -1,0 +1,9 @@
+=======
+Example
+=======
+
+.. currentmodule:: tests.multiplication_tests
+
+.. Don't include inherited members to keep the doc short
+.. autoclass:: multiplication_tests.MultiplicationTestCase
+    :members:
