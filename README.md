@@ -32,4 +32,4 @@ pyidw also incorporates a clever technique to use additional raster data as a co
     pip install pyidw
     pipwin refresh
 
-If you have any questions or problems, feel free to contact me at: yahyatamim0@gmail.com
+If you have any questions or facing any problems, feel free to contact me at: yahyatamim0@gmail.com
