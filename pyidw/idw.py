@@ -153,7 +153,7 @@ def regression_idw_interpolation(input_point_shapefile='',
 
     # obser_df stands for observation_dataframe, lat, lon, elevation, data_value for each station will be stored here.
     obser_df = pd.DataFrame()
-    obser_df['station_name'] = metStat.StationNam
+    obser_df['station_name'] = metStat.iloc[:, 0]
 
     # create two list of indexes of station longitude, latitude in elevation raster file.
     lons, lats = re_elevation.index([lon for lon in metStat.geometry.x], [lat for lat in metStat.geometry.y])
