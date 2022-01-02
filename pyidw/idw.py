@@ -195,3 +195,22 @@ def regression_idw_interpolation(input_point_shapefile='',
     accuracy_score(obser_df, power, polynomial_degree, search_radious)
     print('RMSE:', mean_squared_error(obser_df.data_value.to_list(), obser_df.predicted.to_list(), squared=False))
     print('MAPE:', mean_absolute_error(obser_df.data_value.to_list(), obser_df.predicted.to_list())*100)
+
+
+    
+    
+def show_map(input_raster='', input_point_shapefile='', height=8, width=7, colormap='nipy_spectral'):
+    image_data = rasterio.open(input_raster)
+    pointShp = gpd.read_file(input_point_shapefile)
+    
+    my_matrix = image_data.read(1)
+    my_matrix = np.ma.masked_where(my_matrix==32767, my_matrix)
+    fig, ax =plt.subplots()
+    image_hidden = ax.imshow(my_matrix, cmap=colormap)
+    plt.close()
+
+    fig, ax = plt.subplots(figsize=(width, height))
+    image = show(image_data, cmap=colormap, ax=ax)
+    pointShp.plot(ax=ax, marker='D')
+    fig.colorbar(image_hidden, ax=ax)
+    plt.show()
