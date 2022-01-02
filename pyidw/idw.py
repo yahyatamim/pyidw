@@ -133,7 +133,7 @@ def accuracy_score(obser_df, power, polynomial_degree, search_radious):
 
 
 
-def show_map(input_raster='', input_point_shapefile='', height=8, width=7, colormap='nipy_spectral'):
+def show_map(input_raster='', input_point_shapefile='', height=8, width=7, colormap='coolwarm'):
     image_data = rasterio.open(input_raster)
     pointShp = gpd.read_file(input_point_shapefile)
     
