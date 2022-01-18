@@ -15,11 +15,11 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="pyidw",
-    version="0.1.2",
+    version="0.1.21",
     description="IDW interpolation library for python",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://medium-multiply.readthedocs.io/",
+    url="https://github.com/yahyatamim/pyidw",
     author="Md. Yahya Tamim",
     author_email="yahyatamim0@email.com",
     license="MIT",
