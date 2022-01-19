@@ -24,6 +24,7 @@ def show_map(input_raster='', colormap='coolwarm', image_size=1.5):
     plt.close()
 
     fig, ax = plt.subplots()
+    fig.set_facecolor("w")
     width = fig.get_size_inches()[0] * image_size
     height = fig.get_size_inches()[1] * image_size
     fig.set_size_inches(w=width, h=height)
