@@ -15,7 +15,7 @@ with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="pyidw",
-    version="0.1.25",
+    version="0.1.26",
     description="IDW interpolation library for python",
     long_description=long_description,
     long_description_content_type="text/markdown",
