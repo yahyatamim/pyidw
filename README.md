@@ -89,7 +89,8 @@ It will take a few second to complete, then a map image like below will be shown
 > Output map  from **idw_interpolation()** function. 
 ---
 ### accuracy_standard_idw()
-If you are interested 
+If you are interested in accuracy assessment of your interpolation then you could use **accuracy_standard_idw()** function from **pyidw** which take 6 parameters same as **idw_interpolation()** function. But instead of creating a idw interpolated map, the **accuracy_standard_idw()** function return tow python list. First one containing actual data values from input shapefile and second list contains the interpolated values for those data points using [LeaveOneOut](https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.LeaveOneOut.html#sklearn.model_selection.LeaveOneOut) cross validation method. Then you could compare them to obtain your desired accuracy score. An example code for **accuracy_standard_idw()** function is given bellow.
+ 
 ```python
 from pyidw import idw
 from sklearn.metrics import mean_squared_error
