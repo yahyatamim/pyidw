@@ -190,4 +190,4 @@ print("RMSE:", mean_squared_error(original_value, interpolated_value, squared=Fa
 ```
 > Output: `RMSE: 1.086343`
 ---
-If you have any questions or problems, feel free to contact me at: yahyatamim0@gmail.com
+If you have any questions, problems or suggestion, feel free to contact me at: yahyatamim0@gmail.com
