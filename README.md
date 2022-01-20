@@ -13,6 +13,8 @@ Inverse distance weighted interpolation is one of the simplest geospatial interp
 
 pyidw package also incorporates a clever technique to use additional raster data as a covariable using polynomial regression. For example, if you are working with temperature data, it is widely known that temperature is inversely proportional to elevation, the higher the elevation, the lower the temperature is. With pyidw, you can easily add elevation data with traditional idw calculation to obtain a different result.
 
+---
+
 ## Installation
 **pyidw** library can be installed using simple `pip install pyidw` command. However, if you are facing trouble installing **pyidw** on your windows machine, please try the commands below on the windows command line. 
 
@@ -32,6 +34,7 @@ pyidw package also incorporates a clever technique to use additional raster data
     pip install pyidw
     pipwin refresh
 
+---
 ## Example
 If you are convinced enough to give **pyidw** a try, here is a simple tutorial for you. You should first download the **pyidw_example.zip** file. This zip file contains four files, 
 - ***pyidw_tutorial.ipynb***
@@ -41,7 +44,7 @@ If you are convinced enough to give **pyidw** a try, here is a simple tutorial f
 
 The ***pyidw_tutorial.ipynb*** file is a jupyter notebook file of this example tutorial, which you could try to run and then modify with your own data. The ***Bangladesh_Temperature.shp***  file is an ESRI point shapefile that contains maximum and minimum temperature values for 34 weather stations all over Bangladesh. Its attribute table looks something like this.
 Station\_Name|Station\_ID|Latitude|Longitude|Max\_Temp|Min\_Temp
--------------|----------:|:------:|:-------:|:-------:|:-------:
+-------------|-----------|--------|---------|---------|---------
 BARISAL      |BGM00041950|22.75   |90.37    |36.75    |9.60     
 BHOLA        |41951099999|22.68   |90.65    |35.62    |10.19    
 BOGRA        |BGM00041883|24.85   |89.37    |38.62    |8.29     
@@ -57,6 +60,8 @@ The ***Bangladesh_Border.shp*** is an ESRI polygon shapefile that covers all the
 
 ![Images of input files with their spatial dimensions.](https://github.com/yahyatamim/pyidw/raw/master/images/point_extent_elevation.png)
 
+---
+### idw_interpolation()
 Now the fun part begins. Write these two line of code in any python interpreter while you are on **pyidw_example** directory.
 ```python
 from pyidw import idw
@@ -66,14 +71,19 @@ idw.idw_interpolation(
     extent_shapefile="Bangladesh_Border.shp",
     column_name="Max_Temp",
     power=2,
-    search_radious=6,
+    search_radious=4,
     output_resolution=250,
 )
 ```
 It will take a few second to complete, then a map image like below will be shown. And a new file will be created namely ***Bangladesh_Temperature_idw.tif***, this is the saved raster file of interpolated map. This file is named after input_point_shapefile name with ***\_idw.tif*** suffix. **idw_interpolation()** function take six parameters. 
 
- - [x] The first parameter ***input_point_shapefile=*** take an ESRI point shapefile which should contain the particular data value we are interseted to create an interpolation map. Also there shouldn't any value outside of our given extent_shapefile area. 
- - [x] The second parameter ***extent_shapefile=*** take an ESRI polygon shapefile, this shapefile is used for defining the calculation and mapping boundary. The coordinate system of extent_shapefile should be same as input_point_shapefile.
- 
-![Standard idw interpolated map](https://github.com/yahyatamim/pyidw/raw/master/images/standard_idw_interpolated_map.png)
+- The first parameter ***input_point_shapefile=*** take an ESRI point shapefile which should contain the particular data value we are interseted to create an interpolation map. Also there shouldn't any value outside of our given extent_shapefile area. 
+- The second parameter ***extent_shapefile=*** take an ESRI polygon shapefile, this shapefile is used for defining the calculation and mapping boundary. The coordinate system of extent_shapefile should be same as input_point_shapefile.
+- The third parameter ***column_name=*** take the column name of particular field as a string. This is the value upon which IDW map will be created.
+- The fourth parameter ***power=*** is an optional parameter with default value of 2, this is the power parameter from [idw equation](https://en.wikipedia.org/wiki/Inverse_distance_weighting#:~:text=A%20general%20form,the%20power%20parameter.).
+- The fifth parameter ***search_radious=*** is also an optional parameter with default value of 4, it determines how many nearest points will be used for idw calculation.
+- The sixth parameter ***output_resolution=*** is also optional with default value of 250. This parameter define the maximum height or width (which one is higher) of reasulting ***\_idw.tif*** file in pixel.
+
+>   Output map image from **idw_interpolation()** function. ![Standard idw interpolated map](https://github.com/yahyatamim/pyidw/raw/master/images/standard_idw_interpolated_map.png)
+
 If you have any questions or problems, feel free to contact me at: yahyatamim0@gmail.com
