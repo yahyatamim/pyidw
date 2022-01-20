@@ -16,24 +16,24 @@ from matplotlib import colors
 
 
 def show_map(input_raster='', colormap='coolwarm', image_size=1.5, return_figure=False):
-    image_data = rasterio.open(input_raster)
-    my_matrix = image_data.read(1)
-    my_matrix = np.ma.masked_where(my_matrix == 32767, my_matrix)
-    fig, ax = plt.subplots()
-    image_hidden = ax.imshow(my_matrix, cmap=colormap)
-    plt.close()
+    with rasterio.open(input_raster) as image_data:
+        my_matrix = image_data.read(1)
+        my_matrix = np.ma.masked_where(my_matrix == 32767, my_matrix)
+        fig, ax = plt.subplots()
+        image_hidden = ax.imshow(my_matrix, cmap=colormap)
+        plt.close()
 
-    fig, ax = plt.subplots()
-    fig.set_facecolor("w")
-    width = fig.get_size_inches()[0] * image_size
-    height = fig.get_size_inches()[1] * image_size
-    fig.set_size_inches(w=width, h=height)
-    image = show(image_data, cmap=colormap, ax=ax)
-    cbar = fig.colorbar(image_hidden, ax=ax, pad=0.02)
-    if return_figure == False:
-        plt.show()
-    else:
-        return fig, ax, cbar
+        fig, ax = plt.subplots()
+        fig.set_facecolor("w")
+        width = fig.get_size_inches()[0] * image_size
+        height = fig.get_size_inches()[1] * image_size
+        fig.set_size_inches(w=width, h=height)
+        image = show(image_data, cmap=colormap, ax=ax)
+        cbar = fig.colorbar(image_hidden, ax=ax, pad=0.02)
+        if return_figure == False:
+            plt.show()
+        else:
+            return fig, ax, cbar
 
 
 #################################################
