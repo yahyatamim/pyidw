@@ -86,6 +86,7 @@ It will take a few second to complete, then a map image like below will be shown
 - The fifth parameter ***search_radious=*** is also an optional parameter with default value of 4, it determines how many nearest points will be used for idw calculation.
 - The sixth parameter ***output_resolution=*** is also optional with default value of 250. This parameter define the maximum height or width (which one is higher) of reasulting ***\_idw.tif*** file in pixel.
 >   ![Standard idw interpolated map](https://github.com/yahyatamim/pyidw/raw/master/images/standard_idw_interpolated_map.png)
+
 > Output map  from **idw_interpolation()** function. 
 ---
 ### accuracy_standard_idw()
@@ -106,7 +107,28 @@ original_value, interpolated_value = idw.accuracy_standard_idw(
 
 print("RMSE:", mean_squared_error(original_value, interpolated_value, squared=False))
 ```
-> Output:
-> `RMSE: 1.401379`
+> Output: `RMSE: 1.401379`
+---
+## show_map()
+We have also implemented a raster visualization function named **show_map()**. This function incorporate easy map visualization with built-in color bar and coordinate tick marks. It take 4 parameters.
+
+ - ***input_raster=***  take raster file name as argument. 
+ - ***colormap=*** is an optional parameter which take [matplotlib colormaps](https://matplotlib.org/stable/tutorials/colors/colormaps.html)  parameter. By changing this, you can easily alter the looks of your map image. 
+ - ***image_size=*** is also an optional parameter with default value set to 1.5 which you can change to make your resulting image larger or smaller.
+ - The last parameter ***return_figure=*** is for those people who wish to alter the resulting image to their own likings. by default it set to false and **show_map()** function won't return anything other than showing the map on screen. If set to true, then **show_map()** function will return figure, axes and color_bar to the user. We will see the detail example of this in next section.
+
+Here is an example code of **show_map()** function.
+```python
+from pyidw import idw
+
+show_map(
+    input_raster="Bangladesh_Temperature_idw.tif",
+    colormap="nipy_spectral_r",
+    image_size=1.5,
+    return_figure=False,
+)
+```
+>Output image 
+
 
 If you have any questions or problems, feel free to contact me at: yahyatamim0@gmail.com
