@@ -15,7 +15,7 @@ from sklearn.model_selection import LeaveOneOut
 from matplotlib import colors
 
 
-def show_map(input_raster='', colormap='coolwarm', image_size=1.5):
+def show_map(input_raster='', colormap='coolwarm', image_size=1.5, return_figure=False):
     image_data = rasterio.open(input_raster)
     my_matrix = image_data.read(1)
     my_matrix = np.ma.masked_where(my_matrix == 32767, my_matrix)
@@ -29,8 +29,11 @@ def show_map(input_raster='', colormap='coolwarm', image_size=1.5):
     height = fig.get_size_inches()[1] * image_size
     fig.set_size_inches(w=width, h=height)
     image = show(image_data, cmap=colormap, ax=ax)
-    fig.colorbar(image_hidden, ax=ax, pad=0.02)
-    plt.show()
+    cbar = fig.colorbar(image_hidden, ax=ax, pad=0.02)
+    if return_figure == False:
+        plt.show()
+    else:
+        return fig, ax, cbar
 
 
 #################################################
