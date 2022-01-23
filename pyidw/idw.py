@@ -301,6 +301,24 @@ def regression_idw(lon, lat, elev, longs, lats, elevs, d_values, id_power,
 #################################################
 
 
+class sigmoidStandardization():
+    def __init__(self, input_array):
+        self.in_array = input_array
+        self.arr_mean = self.in_array.mean()
+        self.arr_std = self.in_array.std()
+        
+    def transform(self, number):
+        self.transformed  = 1/(1 + np.exp(-(number - self.arr_mean)/self.arr_std))
+        return self.transformed
+    
+    def inverse_transform(self, number):
+        self.reverse_transformed = np.log(number/(1-number))*self.arr_std + self.arr_mean
+        return self.reverse_transformed
+
+
+#################################################
+
+
 def regression_idw_interpolation(input_point_shapefile='',
                                  input_raster_file='',
                                  extent_shapefile='',
@@ -331,6 +349,10 @@ def regression_idw_interpolation(input_point_shapefile='',
         obser_df['elevation'] = re_elevation.read(1)[lons, lats]  # read elevation data for each station.
         obser_df['data_value'] = metStat[column_name]
         obser_df['predicted'] = 0.0
+        
+        raster_transform = sigmoidStandardization(obser_df['elevation'])
+        obser_df['trnsfrmd_raster'] = raster_transform.transform(obser_df['elevation'])
+        
         upper_range = obser_df["data_value"].max() + obser_df["data_value"].std()
         lower_range = obser_df["data_value"].min() - obser_df["data_value"].std()
 
@@ -343,10 +365,10 @@ def regression_idw_interpolation(input_point_shapefile='',
                     regression_idw_array[x][y] = regression_idw(
                         lon=x,
                         lat=y,
-                        elev=re_elevation.read(1)[x][y],
+                        elev=raster_transform.transform(re_elevation.read(1)[x][y]),
                         longs=obser_df.lon_index,
                         lats=obser_df.lat_index,
-                        elevs=obser_df.elevation,
+                        elevs=obser_df['trnsfrmd_raster'],
                         d_values=obser_df.data_value,
                         id_power=power,
                         p_degree=polynomial_degree,
@@ -391,10 +413,11 @@ def accuracy_regression_idw(input_point_shapefile='',
                                         [lat for lat in metStat.geometry.y])
         obser_df['lon_index'] = lons
         obser_df['lat_index'] = lats
-        obser_df['elevation'] = re_elevation.read(1)[
-            lons, lats]  # read elevation data for each station.
+        obser_df['elevation'] = re_elevation.read(1)[lons, lats]  # read elevation data for each station.
         obser_df['data_value'] = metStat[column_name]
         obser_df['predicted'] = 0.0
+        raster_transform = sigmoidStandardization(obser_df['elevation'])
+        obser_df['trnsfrmd_raster'] = raster_transform.transform(obser_df['elevation'])
         upper_range = obser_df["data_value"].max() + obser_df["data_value"].std()
         lower_range = obser_df["data_value"].min() - obser_df["data_value"].std()
 
@@ -406,10 +429,10 @@ def accuracy_regression_idw(input_point_shapefile='',
             obser_df.loc[test_ix[0], 'predicted'] = regression_idw(
                 lon=test_point.lon_index,
                 lat=test_point.lon_index,
-                elev=test_point.elevation,
+                elev=test_point['trnsfrmd_raster'],
                 longs=train_df.lon_index,
                 lats=train_df.lat_index,
-                elevs=train_df.elevation,
+                elevs=train_df['trnsfrmd_raster'],
                 d_values=train_df.data_value,
                 id_power=power,
                 p_degree=polynomial_degree,
