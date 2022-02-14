@@ -1,11 +1,3 @@
-
-"""
-Created on 31 Jan, 2021
-Update on 02 Feb, 2022
-@author: Md. Yahya Tamim
-version: 0.2.14
-"""
-
 import numpy as np
 from math import sqrt, floor, ceil
 import matplotlib.pyplot as plt
