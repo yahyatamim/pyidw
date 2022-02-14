@@ -21,6 +21,9 @@ from sklearn.metrics import r2_score
 from sklearn.model_selection import LeaveOneOut
 from matplotlib import colors
 
+def dummy_function(a,b):
+    c = a + b
+    return c
 
 def show_map(input_raster='', colormap='coolwarm', image_size=1.5, return_figure=False):
     with rasterio.open(input_raster) as image_data:
