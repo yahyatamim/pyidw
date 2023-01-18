@@ -1,4 +1,4 @@
-> **Please Note:** This library was created as a thesis project and it is no longer maintained by its author. 
+> # **Please Note:** This library was created as a thesis project and it is no longer maintained by its author. 
 
 # All in one IDW package for python
 > **This is an example map created using the pyidw library.**
