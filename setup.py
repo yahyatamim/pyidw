@@ -35,5 +35,5 @@ setup(
     ],
     packages=["pyidw"],
     include_package_data=True,
-    install_requires=["numpy","matplotlib","pandas","geopandas","rasterio","fiona","sklearn"]
+    install_requires=["numpy","matplotlib","pandas","geopandas","rasterio","fiona","scikit-learn"]
 )
