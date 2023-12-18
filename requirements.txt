@@ -4,4 +4,4 @@ pandas
 geopandas
 rasterio
 fiona
-sklearn
+scikit-learn
